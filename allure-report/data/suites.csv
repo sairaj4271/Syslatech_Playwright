@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","90923","Create Configure Publish Run Workflow Successfully","chromium","Tue Nov 25 10:28:31 IST 2025","failed","Tue Nov 25 10:30:02 IST 2025","Workflow Automation","workflows.spec.ts","",""
+"","35696","EasyMyTrip Hotel Booking Test","chromium","Tue Nov 25 12:45:42 IST 2025","passed","Tue Nov 25 12:46:17 IST 2025","","easyMyTrip.spec.ts","",""
+"","85132","EasyMyTrip fight Booking Test","chromium","Tue Nov 25 15:53:30 IST 2025","failed","Tue Nov 25 15:54:55 IST 2025","","esaymytripfight.spec.ts","",""

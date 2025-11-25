@@ -1,0 +1,89 @@
+[2025-11-25T10:38:58.601Z] [INFO]  Opening Base URL: https://showcase.bluecopa.com/welcome
+[2025-11-25T10:38:59.386Z] [DEBUG] Wait: URL contains → "showcase.bluecopa.com"
+[2025-11-25T10:38:59.463Z] [DEBUG] URL matched "showcase.bluecopa.com" in 77ms
+[2025-11-25T10:38:59.465Z] [DEBUG] Click → Login
+[2025-11-25T10:38:59.780Z] [INFO] Logging in as: auto-testadmin@bluecopa.com
+[2025-11-25T10:38:59.781Z] [DEBUG] Fill → <element> | auto-testadmin@bluecopa.com
+[2025-11-25T10:39:01.619Z] [DEBUG] Fill → <element> | Admin@copa123
+[2025-11-25T10:39:01.700Z] [DEBUG] Click → <element>
+[2025-11-25T10:39:03.088Z] [DEBUG] Wait: visible → + Dashboard | timeout: 60000ms
+[2025-11-25T10:39:20.240Z] [DEBUG] Visible in 17151ms → + Dashboard
+[2025-11-25T10:39:20.241Z] [INFO]  Login successful
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T10:39:20.242Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T10:39:20.536Z] [DEBUG] Hidden in 294ms → class,\'fixed\') and contains(
+ Click → operations
+[2025-11-25T10:39:20.536Z] [DEBUG] Click → operations
+ Wait For Visible → workflowName (Timeout: 60000ms)
+[2025-11-25T10:39:21.066Z] [DEBUG] Wait: visible → Workflows | timeout: 60000ms
+[2025-11-25T10:39:21.489Z] [DEBUG] Visible in 423ms → Workflows
+ Click → workflowName
+[2025-11-25T10:39:21.490Z] [DEBUG] Click → workflowName
+ Click → newButton
+[2025-11-25T10:39:22.200Z] [DEBUG] Click → newButton
+ Wait For Visible → pencil (Timeout: 60000ms)
+[2025-11-25T10:39:26.041Z] [DEBUG] Wait: visible → class="text-secondary cursor-pointer"]') | timeout: 60000ms
+[2025-11-25T10:39:26.909Z] [DEBUG] Visible in 868ms → class="text-secondary cursor-pointer"]')
+ Click → pencil
+[2025-11-25T10:39:26.910Z] [DEBUG] Click → pencil
+ Wait For Visible → renameInput (Timeout: 60000ms)
+[2025-11-25T10:39:27.065Z] [DEBUG] Wait: visible → id=\'input_text\']') | timeout: 60000ms
+[2025-11-25T10:39:27.083Z] [DEBUG] Visible in 18ms → id=\'input_text\']')
+ Clear → renameInput
+[2025-11-25T10:39:27.084Z] [DEBUG] Clear → id=\'input_text\']')
+ Type → renameInput | Value: Workflow_CZX67D | Delay: 0ms
+[2025-11-25T10:39:27.187Z] [DEBUG] Type → renameInput | value="Workflow_CZX67D"
+ Click → applyButton
+[2025-11-25T10:39:28.248Z] [DEBUG] Click → applyButton
+ Click → saveWorkflow
+[2025-11-25T10:39:28.414Z] [DEBUG] Click → saveWorkflow
+🔎 Wait For Text → Workflow saved (Timeout: 60000ms)
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T10:39:30.542Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T10:39:30.560Z] [DEBUG] Hidden in 18ms → class,\'fixed\') and contains(
+Generated Workflow Name:  Workflow_CZX67D
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T10:39:30.560Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T10:39:30.579Z] [DEBUG] Hidden in 19ms → class,\'fixed\') and contains(
+ Click → trigger
+[2025-11-25T10:39:30.579Z] [DEBUG] Click → trigger
+ Click → addTrigger
+[2025-11-25T10:39:30.727Z] [DEBUG] Click → addTrigger
+ Click → triggerSelect
+[2025-11-25T10:39:30.907Z] [DEBUG] Click → triggerSelect
+ Click → manualTrigger
+[2025-11-25T10:39:31.088Z] [DEBUG] Click → manualTrigger
+ Click → triggerAdd
+[2025-11-25T10:39:31.264Z] [DEBUG] Click → triggerAdd
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T10:39:31.464Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T10:39:31.491Z] [DEBUG] Hidden in 27ms → class,\'fixed\') and contains(
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T10:39:31.492Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T10:39:31.515Z] [DEBUG] Hidden in 22ms → class,\'fixed\') and contains(
+ Click → triggerSlot
+[2025-11-25T10:39:31.516Z] [DEBUG] Click → triggerSlot
+ Click → activity
+[2025-11-25T10:39:32.030Z] [DEBUG] Click → activity
+ Click → activityItem
+[2025-11-25T10:39:32.283Z] [DEBUG] Click → activityItem
+[2025-11-25T10:40:32.424Z] [WARN] Normal click failed for → activityItem
+[2025-11-25T10:40:32.424Z] [WARN] Trying bounding-box fallback click...
+[2025-11-25T10:40:32.450Z] [DEBUG] BoundingBoxClick → activityItem
+ Wait For Visible → activityType (Timeout: 60000ms)
+[2025-11-25T10:40:32.475Z] [DEBUG] Wait: visible → id=\'subType\']') | timeout: 60000ms
+[2025-11-25T10:40:34.206Z] [ERROR] Timeout after 1731ms → id=\'subType\']')
+[2025-11-25T10:40:34.206Z] [ERROR]  Error in BasePage.waitForElementIsVisible (activityType): locator.waitFor: Test timeout of 90000ms exceeded.
+Call log:
+  - waiting for locator('//input[@id=\'subType\']') to be visible
+
+[2025-11-25T10:40:34.206Z] [ERROR] locator.waitFor: Test timeout of 90000ms exceeded.
+Call log:
+  - waiting for locator('//input[@id=\'subType\']') to be visible
+
+    at Function.waitForElementIsVisible (C:\enterprise-playwright-tests\src\utils\waitUtils.ts:116:21)
+    at fn (C:\enterprise-playwright-tests\src\pages\basePage.ts:703:25)
+    at Function.handle (C:\enterprise-playwright-tests\src\utils\errorHandler.ts:71:20)
+    at WorkflowPage.waitForElementIsVisible (C:\enterprise-playwright-tests\src\pages\basePage.ts:701:25)
+    at WorkflowPage.addRunReconActivity (C:\enterprise-playwright-tests\src\pages\WorkflowPage.ts:167:16)
+    at C:\enterprise-playwright-tests\src\tests\workflows.spec.ts:32:5

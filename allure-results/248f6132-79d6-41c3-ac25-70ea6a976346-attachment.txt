@@ -1,0 +1,118 @@
+[2025-11-25T04:58:38.506Z] [INFO]  Opening Base URL: https://showcase.bluecopa.com/welcome
+[2025-11-25T04:58:48.216Z] [DEBUG] Wait: URL contains → "showcase.bluecopa.com"
+[2025-11-25T04:58:51.795Z] [DEBUG] URL matched "showcase.bluecopa.com" in 3579ms
+[2025-11-25T04:58:51.799Z] [DEBUG] Click → Login
+[2025-11-25T04:58:54.343Z] [INFO] Logging in as: auto-testadmin@bluecopa.com
+[2025-11-25T04:58:54.349Z] [DEBUG] Fill → <element> | auto-testadmin@bluecopa.com
+[2025-11-25T04:59:00.386Z] [DEBUG] Fill → <element> | Admin@copa123
+[2025-11-25T04:59:00.690Z] [DEBUG] Click → <element>
+[2025-11-25T04:59:02.312Z] [DEBUG] Wait: visible → + Dashboard | timeout: 60000ms
+[2025-11-25T04:59:22.969Z] [DEBUG] Visible in 20657ms → + Dashboard
+[2025-11-25T04:59:22.969Z] [INFO]  Login successful
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T04:59:22.972Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T04:59:23.534Z] [DEBUG] Hidden in 562ms → class,\'fixed\') and contains(
+ Click → operations
+[2025-11-25T04:59:23.535Z] [DEBUG] Click → operations
+ Wait For Visible → workflowName (Timeout: 60000ms)
+[2025-11-25T04:59:25.910Z] [DEBUG] Wait: visible → Workflows | timeout: 60000ms
+[2025-11-25T04:59:26.076Z] [DEBUG] Visible in 165ms → Workflows
+ Click → workflowName
+[2025-11-25T04:59:26.076Z] [DEBUG] Click → workflowName
+ Click → newButton
+[2025-11-25T04:59:27.015Z] [DEBUG] Click → newButton
+ Wait For Visible → pencil (Timeout: 60000ms)
+[2025-11-25T04:59:32.365Z] [DEBUG] Wait: visible → class="text-secondary cursor-pointer"]') | timeout: 60000ms
+[2025-11-25T04:59:34.880Z] [DEBUG] Visible in 2515ms → class="text-secondary cursor-pointer"]')
+ Click → pencil
+[2025-11-25T04:59:34.880Z] [DEBUG] Click → pencil
+ Wait For Visible → renameInput (Timeout: 60000ms)
+[2025-11-25T04:59:35.079Z] [DEBUG] Wait: visible → id=\'input_text\']') | timeout: 60000ms
+[2025-11-25T04:59:35.107Z] [DEBUG] Visible in 28ms → id=\'input_text\']')
+ Clear → renameInput
+[2025-11-25T04:59:35.109Z] [DEBUG] Clear → id=\'input_text\']')
+ Type → renameInput | Value: Workflow_s67luT | Delay: 0ms
+[2025-11-25T04:59:35.288Z] [DEBUG] Type → renameInput | value="Workflow_s67luT"
+ Click → applyButton
+[2025-11-25T04:59:36.520Z] [DEBUG] Click → applyButton
+ Click → saveWorkflow
+[2025-11-25T04:59:36.713Z] [DEBUG] Click → saveWorkflow
+🔎 Wait For Text → Workflow saved (Timeout: 60000ms)
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T04:59:38.880Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T04:59:38.902Z] [DEBUG] Hidden in 21ms → class,\'fixed\') and contains(
+Generated Workflow Name:  Workflow_s67luT
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T04:59:38.903Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T04:59:38.932Z] [DEBUG] Hidden in 29ms → class,\'fixed\') and contains(
+ Click → trigger
+[2025-11-25T04:59:38.933Z] [DEBUG] Click → trigger
+ Click → addTrigger
+[2025-11-25T04:59:39.118Z] [DEBUG] Click → addTrigger
+ Click → triggerSelect
+[2025-11-25T04:59:39.331Z] [DEBUG] Click → triggerSelect
+ Click → manualTrigger
+[2025-11-25T04:59:39.545Z] [DEBUG] Click → manualTrigger
+ Click → triggerAdd
+[2025-11-25T04:59:39.764Z] [DEBUG] Click → triggerAdd
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T04:59:40.031Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T04:59:40.068Z] [DEBUG] Hidden in 36ms → class,\'fixed\') and contains(
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T04:59:40.069Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T04:59:40.111Z] [DEBUG] Hidden in 42ms → class,\'fixed\') and contains(
+ Click → triggerSlot
+[2025-11-25T04:59:40.111Z] [DEBUG] Click → triggerSlot
+ Click → activity
+[2025-11-25T04:59:40.863Z] [DEBUG] Click → activity
+ Click → activityItem
+[2025-11-25T04:59:41.112Z] [DEBUG] Click → activityItem
+ Wait For Visible → activityType (Timeout: 60000ms)
+[2025-11-25T04:59:41.402Z] [DEBUG] Wait: visible → id=\'subType\']') | timeout: 60000ms
+[2025-11-25T04:59:41.436Z] [DEBUG] Visible in 34ms → id=\'subType\']')
+ Click → activityType
+[2025-11-25T04:59:41.436Z] [DEBUG] Click → activityType
+ Click → action
+[2025-11-25T04:59:41.742Z] [DEBUG] Click → action
+ Type → actionType | Value: Run Recon | Delay: 0ms
+[2025-11-25T04:59:42.104Z] [DEBUG] Type → actionType | value="Run Recon"
+ Click → runRecon
+[2025-11-25T04:59:42.884Z] [DEBUG] Click → runRecon
+ Wait For Visible → sourceType (Timeout: 60000ms)
+[2025-11-25T04:59:43.134Z] [DEBUG] Wait: visible → id=\'source_type_recon_id\']') | timeout: 60000ms
+[2025-11-25T04:59:43.174Z] [DEBUG] Visible in 40ms → id=\'source_type_recon_id\']')
+ Click → sourceType
+[2025-11-25T04:59:43.175Z] [DEBUG] Click → sourceType
+ Click → workspace
+[2025-11-25T04:59:43.414Z] [DEBUG] Click → workspace
+ Wait For Visible → reconId (Timeout: 60000ms)
+[2025-11-25T04:59:43.630Z] [DEBUG] Wait: visible → id=\'recon_id\']') | timeout: 60000ms
+[2025-11-25T04:59:43.661Z] [DEBUG] Visible in 31ms → id=\'recon_id\']')
+ Click → reconId
+[2025-11-25T04:59:43.661Z] [DEBUG] Click → reconId
+ Click → testsigmaRecon
+[2025-11-25T04:59:43.914Z] [DEBUG] Click → testsigmaRecon
+ Click → saveWorkflow
+[2025-11-25T04:59:44.152Z] [DEBUG] Click → saveWorkflow
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T04:59:44.396Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T04:59:45.786Z] [DEBUG] Hidden in 1389ms → class,\'fixed\') and contains(
+ Click → publishButton
+[2025-11-25T04:59:45.787Z] [DEBUG] Click → publishButton
+ Wait For Disappear → spinner (Timeout: 60000ms)
+[2025-11-25T04:59:46.135Z] [DEBUG] Wait: hidden → class,\'fixed\') and contains( | timeout: 60000ms
+[2025-11-25T04:59:47.002Z] [DEBUG] Hidden in 866ms → class,\'fixed\') and contains(
+ Click → instances
+[2025-11-25T04:59:47.003Z] [DEBUG] Click → instances
+ Click → startButton
+[2025-11-25T04:59:47.249Z] [DEBUG] Click → startButton
+ Click → refresh
+[2025-11-25T04:59:48.353Z] [DEBUG] Click → refresh
+ Click → refresh
+[2025-11-25T04:59:48.571Z] [DEBUG] Click → refresh
+ Click → refresh
+[2025-11-25T04:59:48.824Z] [DEBUG] Click → refresh
+⏸️ pause → 5000ms
+ Click → refresh
+[2025-11-25T04:59:54.182Z] [DEBUG] Click → refresh
+⏸️ pause → 5000ms
