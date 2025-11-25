@@ -3,12 +3,17 @@ import { defineConfig } from "@playwright/test";
 import { configManager } from "./src/config/env.index";
 import "./src/utils/runtimeGlobal";
 
-
+// Read runtime configs
 const baseURL = configManager.getBaseURL();
 const browserConf = configManager.getBrowserConfig();
 
+// Detect Jenkins CI
+const isCI = !!process.env.CI;
+
 export default defineConfig({
   testDir: "./src/tests",
+
+  // Full test timeout (15 mins)
   timeout: 900_000,
 
   expect: {
@@ -17,23 +22,32 @@ export default defineConfig({
 
   use: {
     baseURL,
-    headless: browserConf.headless,
 
-    // 🟩 USE FULL SCREEN SIZE (browser window handles it)
+    // CI → Always headless, Local → use your env config
+    headless: isCI ? true : browserConf.headless,
+
+    // Viewport handling
     viewport: null,
-launchOptions: {
-  args: [
-    "--start-maximized",
-    "--window-size=1920,1080"
-  ],
-},
+
+    // Jenkins uses secure args
+    launchOptions: isCI
+      ? {
+          args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        }
+      : {
+          args: ["--start-maximized", "--window-size=1920,1080"],
+        },
+
     actionTimeout: configManager.getTimeout("action"),
     navigationTimeout: configManager.getTimeout("navigation"),
 
-    screenshot: "only-on-failure",
-    video: "retain-on-failure",
-    trace: "retain-on-failure",
+    screenshot: isCI ? "only-on-failure" : "only-on-failure",
+    video: isCI ? "retain-on-failure" : "retain-on-failure",
+    trace: isCI ? "retain-on-failure" : "retain-on-failure",
   },
+
+  retries: isCI ? 2 : 0,
+  workers: isCI ? 2 : 4,
 
   projects: [
     {
@@ -42,10 +56,17 @@ launchOptions: {
     },
   ],
 
-  reporter: [
-     ["list"],
-    ["html", { open: "never" }],
-    ["junit", { outputFile: "reports/results.xml" }],
-    ["allure-playwright"],
-  ],
+  reporter: isCI
+    ? [
+        ["list"],
+        ["junit", { outputFile: "reports/results.xml" }],
+        ["html"]
+        ["allure-playwright"],
+      ]
+    : [
+        ["list"],
+        ["html", { open: "never" }],
+        ["junit", { outputFile: "reports/results.xml" }],
+        ["allure-playwright"],
+      ],
 });
