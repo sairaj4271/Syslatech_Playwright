@@ -1,58 +1,95 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs "Node_18"
+    environment {
+        // Use pre-installed NodeJS
+        PATH = "C:/Program Files/nodejs/;${env.PATH}"
+
+        // Enable CI mode inside Playwright
+        CI = "true"
+
+        // Playwright browser binaries
+        PLAYWRIGHT_BROWSERS_PATH = "0"
     }
 
-    environment {
-        CI = "true"
-        PLAYWRIGHT_BROWSERS_PATH = "0"
+    options {
+        timestamps()
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        timeout(time: 40, unit: 'MINUTES')
     }
 
     stages {
 
-        stage('Checkout') {
+        stage('🔄 Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/sairaj4271/Syslatech_Playwright.git'
+                git branch: 'main',
+                    url: 'https://github.com/sairaj4271/Syslatech_Playwright.git'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('📦 Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
-        stage('Install Playwright Browsers') {
+        stage('🌐 Install Playwright Browsers') {
             steps {
-                sh 'npx playwright install --with-deps'
+                bat 'npx playwright install --with-deps'
             }
         }
 
-        stage('Run Playwright Tests') {
+        stage('🧪 Run Tests (Parallel Execution)') {
             steps {
-                sh 'npx playwright test'
+                bat 'npx playwright test --workers=2 --retries=1'
             }
         }
 
-        stage('Generate Allure Report') {
+        stage('📊 Generate Allure Report') {
             steps {
-                sh 'allure generate allure-results --clean -o allure-report || true'
+                script {
+                    bat 'allure generate allure-results --clean -o allure-report || true'
+                }
+            }
+        }
+
+        stage('📁 Archive Reports') {
+            steps {
+                junit 'reports/results.xml'
+                archiveArtifacts artifacts: 'allure-results/**', fingerprint: true
+                archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+            }
+        }
+
+        stage('📤 Publish Allure Report to Jenkins') {
+            steps {
+                allure includeProperties: false,
+                       jdk: '',
+                       results: [[path: 'allure-results']]
             }
         }
     }
 
     post {
-        always {
-            junit 'reports/results.xml'
-            archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true
-        }
+
         success {
-            echo "🎉 Test Execution Successful!"
+            echo "🎉 TESTS PASSED — GREAT JOB!"
+            slackSend channel: '#automation',
+                      message: "✅ *SUCCESS*: Playwright tests passed on Jenkins.",
+                      color: "good"
         }
+
         failure {
-            echo "❌ Test Execution Failed!"
+            echo "❌ TESTS FAILED — CHECK REPORTS"
+            slackSend channel: '#automation',
+                      message: "❌ *FAILURE*: Playwright tests failed. See Jenkins reports.",
+                      color: "danger"
+        }
+
+        always {
+            echo "🧹 Cleaning Workspace..."
+            cleanWs()
         }
     }
 }
