@@ -1,294 +1,251 @@
-Playwright Automation Framework
-Enterprise-Grade UI + API + Utilities Framework
+Enterprise-Level Playwright Automation Framework
 
-Built using Playwright + TypeScript, with complete implementation of
-EasyMyTrip (Hotels + Flights), Workflow Automation, Enterprise BasePage,
-Runtime Storage, Reporting, Excel Export, Fixtures, Config Manager,
-Retry + Error Handling, Logging, and much more.
 
-📌 Table of Contents
+This project is a full enterprise-grade automation framework built using Playwright + TypeScript.
+It follows industry standards used in real companies (POM, fixtures, reusable utilities, runtime storage, logging, validations, retries, etc.)
 
-✨ Overview
+This README explains:
+✔ What this framework does
+✔ Folder & file explanations
+✔ How it works internally
+✔ How to run it
+✔ What advanced utilities we created
 
-🔥 Key Features
+📌 1. Project Overview
 
-📁 Project Structure
+This framework automates:
 
-⚙️ Environment Configuration
+✅ MakeMyTrip Hotel Booking
+✅ MakeMyTrip Flight Booking
+✅ Workflow Testing (Bluecopa Portal Example)
+✅ Reusable Enterprise Base Framework
 
-🧰 Core Utilities
+It is built using:
 
-🧪 Running Tests
+Playwright (UI Automation)
 
-📊 Test Reporting
+TypeScript
 
-📤 Excel Export (Auto Test Data Writer)
+Page Object Model (POM)
 
-📘 Available Test Suites
+Reusable Utilities
 
-📌 Branching & Contribution Workflow
+Runtime Global Storage (very important)
 
-✨ Overview
+Centralized Logging
 
-This repository contains a highly structured & scalable enterprise Playwright framework used internally at Syslatech for automation of multiple platforms:
+Advanced File Utilities
 
-✔ EasyMyTrip Hotel Booking
-✔ EasyMyTrip Flight Booking
-✔ Workflow Automation
-✔ Custom Runtime Store
-✔ Excel Output Generation
-✔ Full Error, Retry, Logging & Screenshots
-✔ Multi-environment Test Execution
+Custom Wait & Retry Utilities
 
-🔥 Key Features
-✅ Enterprise BasePage (1300+ lines)
+Allure Reporting
 
-Smart Locator Normalization
+📌 2. Why This Framework Is "Enterprise-Level"?
 
-Auto Label Logging
+This framework contains real-company level features:
 
-Dynamic Waits (visibility, hidden, URL, load states)
+🔥 1. BasePage (Reusable Actions)
 
-Retry Mechanism with backoff
+Contains:
 
-ErrorHandler Bound to Every Action
+Safe click
 
-Auto Runtime Store Setters (storeTextContent, storeInputValue)
+Smart type
 
-Auto Element Name Extraction
+Retry actions
 
-✅ Advanced Utilities
-Utility	Description
-RuntimeStore	Global in-memory variable store (Runtime.set() / Runtime.get())
-RetryUtils	Automatic retry for flaky steps
-ErrorHandler	Centralized try/catch with context logging
-WaitUtils	Custom wait conditions
-ElementUtils	Click, type, fill with retry + auto logs
-FileUtils	Read/Write Excel, CSV, JSON, Text + Auto Folder Creation
-NumberUtils	Random age, ranges, below/above, etc.
-ValidationUtils	Common field validations
-✅ Configuration Manager (env.dev.ts / env.qa.ts)
+Element waits
 
-Multi-environment config loader
+Select dropdown
 
-Merges .env overrides
+Error handling
 
-Zod schema validation
+Screenshot utilities
 
-Browser flags + timeouts + logging configuration
+Page load handling
 
-Clean, consistent environment output
+Central logging
 
-✅ Excel Export (Dynamic Named Files)
+This avoids writing the same Playwright code everywhere.
 
-Automatically creates Excel files with:
+🔥 2. Runtime Store
 
-TestCaseName
+This is one of your MOST important utilities.
 
-Timestamp
+It stores temporary values during test execution.
 
-Output Folder Auto-Generated
+Example:
 
-hotelList / flightList written as rows
+Runtime.set("City", "Goa");
+console.log(Runtime.get("City"))
 
-✅ Allure Reporting Enabled
 
-Attachments
+Used for:
 
-Screenshots
+Storing dates
 
-Videos
+Storing city names
 
-Steps
+Storing selected hotel name
 
-Console logs
+Storing room/guest count
 
-Trace
+🔥 3. FileUtils
 
-📁 Project Structure
-Syslatech_Playwright/
+Allows:
+
+✔ Write Excel
+✔ Write CSV
+✔ Read JSON
+✔ Read Excel
+✔ Auto-create output folders
+✔ Fetch latest file from Downloads
+
+Example:
+
+FileUtils.writeExcel("output/hotels.xlsx", hotelList)
+
+🔥 4. WaitUtils / RetryUtils
+
+Handles flaky UI:
+
+✔ Auto retry failed clicks
+✔ Smart wait for element
+✔ Handle dynamic Angular/React elements
+
+🔥 5. ConfigManager
+
+Two environments:
+
+dev
+
+qa
+
+Loads from:
+
+env.dev.ts
+env.qa.ts
+
+
+With .env support.
+
+🔥 6. Fixtures (beforeEach, afterEach)
+
+Login before test
+
+Setup browser
+
+Context management
+
+Attach screenshots and videos
+
+🔥 7. Allure Reporting
+
+A fully integrated reporting system:
+
+allure generate
+allure open
+
+📌 3. Project Folder Structure (Explained Clearly)
+enterprise-playwright-tests/
+│
 ├── src/
-│   ├── pages/
-│   │   ├── basePage.ts               (Enterprise Core)
-│   │   ├── easyMyTrip.ts             (Hotel Flow)
-│   │   ├── easyMyTripForFlight.ts    (Flight Flow)
-│   │   ├── WorkflowPage.ts           (Workflow Automation)
-│   │   └── login.ts
-│   ├── utils/
-│   │   ├── commonUtils.ts
-│   │   ├── runtimeStore.ts
-│   │   ├── runtimeGlobal.d.ts
-│   │   ├── elementUtils.ts
-│   │   ├── waitUtils.ts
-│   │   ├── retryUtils.ts
-│   │   ├── errorHandler.ts
-│   │   ├── fileUtils.ts
-│   │   ├── logger.ts
-│   │   ├── validationUtils.ts
-│   │   ├── testDataManager.ts
-│   │   ├── testData.ts
-│   │   └── config.ts
+│   ├── pages/                # Page Object Model (POM)
+│   │   ├── basePage.ts       # Most important file – framework actions
+│   │   ├── easyMyTrip.ts     # MMT Hotel booking POM
+│   │   ├── easyMyTripForFlight.ts  # Flights POM
+│   │   ├── WorkflowPage.ts   # Bluecopa workflow automation
+│   │   └── login.ts          # Login page
+│   │
+│   ├── tests/
+│   │   ├── easyMyTrip.spec.ts        # Hotel booking test
+│   │   ├── esaymytripfight.spec.ts   # Flight booking test
+│   │   └── workflows.spec.ts         # Workflow test
+│   │
+│   ├── utils/                # Reusable utilities
+│   │   ├── runtimeStore.ts   # Global runtime storage
+│   │   ├── fileUtils.ts      # Excel, CSV, JSON readers
+│   │   ├── elementUtils.ts   # Element helpers
+│   │   ├── waitUtils.ts      # Wait helpers
+│   │   ├── errorHandler.ts   # Error handling
+│   │   ├── retryUtils.ts     # Retry engine
+│   │   ├── commonUtils.ts    # Date utils, number utils
+│   │   ├── logger.ts         # Central logger
+│   │   └── validationUtils.ts# Input validations
+│   │
 │   ├── fixtures/
-│   │   ├── globalSetup.ts
-│   │   ├── globalTeardown.ts
-│   │   ├── fixtures.ts
-│   │   └── testFixtures.ts
-│   ├── config/
+│   │   ├── fixtures.ts       # Custom fixtures
+│   │   ├── globalSetup.ts    # Before test run
+│   │   └── globalTeardown.ts # After test run
+│   │
+│   ├── config/               # Environment Config
 │   │   ├── env.dev.ts
 │   │   ├── env.qa.ts
-│   │   ├── env.index.ts
 │   │   ├── env.schema.ts
-│   │   ├── types.ts
-│   │   └── globalTimeout.ts
-│   ├── tests/
-│   │   ├── easyMyTrip.spec.ts
-│   │   ├── esaymytripfight.spec.ts
-│   │   └── workflows.spec.ts
-├── test-data/
-│   ├── api/
-│   └── ui/
-├── allure-results/
-├── playwright.config.ts
+│   │   └── env.index.ts
+│
+├── playwright.config.ts      # Playwright main config
 ├── package.json
 ├── tsconfig.json
-└── README.md
+├── reports/
+└── allure-results/
 
-⚙️ Environment Configuration
-Create .env
-ENVIRONMENT=qa
-BASE_URL=https://example.com
-EASY_URL=https://www.easemytrip.com
-TIMEOUT_ACTION=60000
-TIMEOUT_WAIT=60000
-TIMEOUT_NAVIGATION=45000
-HEADLESS=true
+📌 4. How to Run Tests
+✔ Install all packages
+npm install
 
-Config Auto Logs
+✔ Install browsers
+npx playwright install
 
-Printed at runtime:
-
-===== ENVIRONMENT LOADED =====
-ENV: qa
-BASE URL: https://showcase.bluecopa.com/welcome
-TIMEOUTS: { action: 60000, wait: 60000, navigation: 45000 }
-================================
-
-
-You disabled the log — good job.
-
-🧰 Core Utilities
-Runtime Store Example
-Runtime.set("SelectedFlightDate", "26");
-Runtime.get("SelectedFlightDate");
-
-
-Enterprise clean:
-
-// Store
-Runtime.set("CleanCheckOut", cleanAndConvertToDDMMYYYY(raw));
-
-// Retrieve
-const checkout = $("CleanCheckOut");
-
-Excel Auto Writer
-await FileUtils.writeTestCaseExcel(hotelList, testInfo);
-
-
-Auto creates:
-
-/reports/excel/TC_HotelBooking_2025-11-25_10-45.xlsx
-
-🧪 Running Tests
-Run All
+✔ Run all tests
 npx playwright test
 
-Headed
+✔ Run specific test
+npx playwright test easyMyTrip.spec.ts
+
+✔ Run with UI
 npx playwright test --headed
 
-Only 1 Test
-npx playwright test -g "Hotel Booking"
+✔ Run a specific test case
+npx playwright test -g "EasyMyTrip Hotel Booking Test"
 
-Open Report
-npx playwright show-report
+📌 5. Generate Allure Report
+Step 1: Execute tests
+npx playwright test
 
-📊 Test Reporting
-Allure
+Step 2: Generate report
+allure generate allure-results --clean
 
-Generate:
+Step 3: Open report
+allure open
 
-allure generate allure-results --clean -o allure-report
+📌 6. Key Features Implemented 
+🚀 Enterprise BasePage (smart actions)
+🚀 Runtime Store (global variable system)
+🚀 Powerful FileUtils (Excel/CSV auto-create)
+🚀 Date utilities (clean + convert)
+🚀 Retry engine for flaky UI
+🚀 MMT Hotel and Flight automation
+🚀 Workflow automation for Bluecopa
+🚀 GitHub project setup
+🚀 Allure reporting integration
+🚀 Full environment management (dev, qa)
+📌 7. College-Friendly Summary
 
+Your framework:
 
-Open:
+Is not simple Playwright
 
-allure open allure-report
+It is a full testing architecture, like real IT companies use
 
+Shows professional coding standards
 
-Playwright automatically attaches:
+Includes advanced utility engineering
 
-Screenshot
+Is scalable, maintainable, reusable
 
-Video
+This README will clearly show your college that:
 
-Trace
-
-Error context
-
-Logs
-
-📤 Excel Export (Auto Test Data Writer)
-
-Your framework now exports:
-
-Hotel list (sorted high → low)
-
-Flight list
-
-Workflow outputs
-
-Auto file name:
-
-test_output/<TestCaseName>_<timestamp>.xlsx
-
-📘 Available Test Suites
-✔ EasyMyTrip – Hotel Booking
-
-Enter city
-
-Apply check-in / check-out
-
-Auto guest selection
-
-Child age randomization
-
-Room summary verification
-
-Sorting hotels
-
-Export hotel list to Excel
-
-✔ EasyMyTrip – Flight Booking
-
-Select flight type
-
-Dynamic date selection
-
-Auto runtime-store date click
-
-Guest logic (adult/child)
-
-Flight list extraction
-
-Dynamic XPath generation
-
-✔ Workflow Automation
-
-Start workflow
-
-Wait for state transition
-
-Read logs
-
-Validate outputs
-
-Enterprise wait loops
+🔹 You built a production-level automation system
+🔹 You understand real QA architecture
+🔹 You can work in enterprise projects
