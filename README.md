@@ -1,181 +1,294 @@
-# MakeMyTrip Playwright Automation Framework
+Playwright Automation Framework
+Enterprise-Grade UI + API + Utilities Framework
 
-An advanced **End-to-End Testing Framework** for MakeMyTrip using Playwright with TypeScript, following Page Object Model (POM) architecture and industry best practices.
+Built using Playwright + TypeScript, with complete implementation of
+EasyMyTrip (Hotels + Flights), Workflow Automation, Enterprise BasePage,
+Runtime Storage, Reporting, Excel Export, Fixtures, Config Manager,
+Retry + Error Handling, Logging, and much more.
 
-## 📋 Table of Contents
+📌 Table of Contents
 
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [Running Tests](#running-tests)
-- [Test Reports](#test-reports)
+✨ Overview
 
-## ✨ Features
+🔥 Key Features
 
-✅ **Page Object Model (POM)** - Maintainable and scalable test structure  
-✅ **Advanced Fixtures** - Custom test fixtures for HomePage, SearchPage, BookingPage  
-✅ **Cross-Browser Testing** - Chrome, Firefox, Safari support  
-✅ **Parallel Execution** - Run tests in parallel (4 workers by default)  
-✅ **Smart Retry Mechanism** - Automatic retry on CI with 2 attempts  
-✅ **Comprehensive Logging** - Timestamped logs with different levels  
-✅ **Screenshot & Video** - Automatic capture on failure  
-✅ **Multiple Reporters** - HTML, JUnit XML, JSON reports  
-✅ **API Utilities** - Helper functions for API testing  
-✅ **Data-Driven Tests** - Parameterized test data  
-✅ **Type Safety** - Full TypeScript support  
+📁 Project Structure
 
-## 📦 Prerequisites
+⚙️ Environment Configuration
 
-- **Node.js** v16.0.0 or higher
-- **npm** v8.0.0 or higher
-- Modern browser (Chrome, Firefox, Safari)
+🧰 Core Utilities
 
-## 🔧 Installation
+🧪 Running Tests
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd makeMyTrip-playwright-tests
+📊 Test Reporting
 
-# Install dependencies
-npm install
+📤 Excel Export (Auto Test Data Writer)
 
-# Install browsers
-npx playwright install
-```
+📘 Available Test Suites
 
-## 📁 Project Structure
+📌 Branching & Contribution Workflow
 
-```
-makeMyTrip-playwright-tests/
+✨ Overview
+
+This repository contains a highly structured & scalable enterprise Playwright framework used internally at Syslatech for automation of multiple platforms:
+
+✔ EasyMyTrip Hotel Booking
+✔ EasyMyTrip Flight Booking
+✔ Workflow Automation
+✔ Custom Runtime Store
+✔ Excel Output Generation
+✔ Full Error, Retry, Logging & Screenshots
+✔ Multi-environment Test Execution
+
+🔥 Key Features
+✅ Enterprise BasePage (1300+ lines)
+
+Smart Locator Normalization
+
+Auto Label Logging
+
+Dynamic Waits (visibility, hidden, URL, load states)
+
+Retry Mechanism with backoff
+
+ErrorHandler Bound to Every Action
+
+Auto Runtime Store Setters (storeTextContent, storeInputValue)
+
+Auto Element Name Extraction
+
+✅ Advanced Utilities
+Utility	Description
+RuntimeStore	Global in-memory variable store (Runtime.set() / Runtime.get())
+RetryUtils	Automatic retry for flaky steps
+ErrorHandler	Centralized try/catch with context logging
+WaitUtils	Custom wait conditions
+ElementUtils	Click, type, fill with retry + auto logs
+FileUtils	Read/Write Excel, CSV, JSON, Text + Auto Folder Creation
+NumberUtils	Random age, ranges, below/above, etc.
+ValidationUtils	Common field validations
+✅ Configuration Manager (env.dev.ts / env.qa.ts)
+
+Multi-environment config loader
+
+Merges .env overrides
+
+Zod schema validation
+
+Browser flags + timeouts + logging configuration
+
+Clean, consistent environment output
+
+✅ Excel Export (Dynamic Named Files)
+
+Automatically creates Excel files with:
+
+TestCaseName
+
+Timestamp
+
+Output Folder Auto-Generated
+
+hotelList / flightList written as rows
+
+✅ Allure Reporting Enabled
+
+Attachments
+
+Screenshots
+
+Videos
+
+Steps
+
+Console logs
+
+Trace
+
+📁 Project Structure
+Syslatech_Playwright/
 ├── src/
 │   ├── pages/
-│   │   ├── basePage.ts              # Base class with common methods
-│   │   ├── homePage.ts              # Home page object model
-│   │   ├── searchPage.ts            # Search results page object
-│   │   └── bookingPage.ts           # Booking page object
+│   │   ├── basePage.ts               (Enterprise Core)
+│   │   ├── easyMyTrip.ts             (Hotel Flow)
+│   │   ├── easyMyTripForFlight.ts    (Flight Flow)
+│   │   ├── WorkflowPage.ts           (Workflow Automation)
+│   │   └── login.ts
 │   ├── utils/
-│   │   ├── config.ts                # Configuration management
-│   │   ├── helpers.ts               # Helper functions
-│   │   ├── logger.ts                # Logging utility
-│   │   ├── testData.ts              # Test data collection
-│   │   ├── validationUtils.ts       # Validation helpers
-│   │   └── apiUtils.ts              # API utilities
+│   │   ├── commonUtils.ts
+│   │   ├── runtimeStore.ts
+│   │   ├── runtimeGlobal.d.ts
+│   │   ├── elementUtils.ts
+│   │   ├── waitUtils.ts
+│   │   ├── retryUtils.ts
+│   │   ├── errorHandler.ts
+│   │   ├── fileUtils.ts
+│   │   ├── logger.ts
+│   │   ├── validationUtils.ts
+│   │   ├── testDataManager.ts
+│   │   ├── testData.ts
+│   │   └── config.ts
 │   ├── fixtures/
-│   │   ├── fixtures.ts              # Custom Playwright fixtures
-│   │   ├── globalSetup.ts           # Global setup hook
-│   │   └── globalTeardown.ts        # Global teardown hook
-│   └── tests/
-│       ├── home.spec.ts             # Home page tests
-│       ├── search.spec.ts           # Search page tests
-│       └── booking.spec.ts          # Booking flow tests
-├── playwright.config.ts              # Playwright configuration
-├── tsconfig.json                     # TypeScript configuration
-├── package.json                      # Dependencies
-└── README.md                         # This file
-```
+│   │   ├── globalSetup.ts
+│   │   ├── globalTeardown.ts
+│   │   ├── fixtures.ts
+│   │   └── testFixtures.ts
+│   ├── config/
+│   │   ├── env.dev.ts
+│   │   ├── env.qa.ts
+│   │   ├── env.index.ts
+│   │   ├── env.schema.ts
+│   │   ├── types.ts
+│   │   └── globalTimeout.ts
+│   ├── tests/
+│   │   ├── easyMyTrip.spec.ts
+│   │   ├── esaymytripfight.spec.ts
+│   │   └── workflows.spec.ts
+├── test-data/
+│   ├── api/
+│   └── ui/
+├── allure-results/
+├── playwright.config.ts
+├── package.json
+├── tsconfig.json
+└── README.md
 
-## ⚙️ Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-BASE_URL=https://www.makemytrip.com
+⚙️ Environment Configuration
+Create .env
+ENVIRONMENT=qa
+BASE_URL=https://example.com
+EASY_URL=https://www.easemytrip.com
+TIMEOUT_ACTION=60000
+TIMEOUT_WAIT=60000
+TIMEOUT_NAVIGATION=45000
 HEADLESS=true
-SLOW_MO=0
-TIMEOUT=30000
-RETRIES=0
-WORKERS=4
-BROWSER=chromium
-TEST_EMAIL=test@automation.com
-TEST_PASSWORD=TestPassword@123
-```
 
-## 🧪 Running Tests
+Config Auto Logs
 
-### Run All Tests
-```bash
-npm test
-```
+Printed at runtime:
 
-### Run Tests in Headed Mode
-```bash
-npm run test:headed
-```
+===== ENVIRONMENT LOADED =====
+ENV: qa
+BASE URL: https://showcase.bluecopa.com/welcome
+TIMEOUTS: { action: 60000, wait: 60000, navigation: 45000 }
+================================
 
-### Run Tests in Debug Mode
-```bash
-npm run test:debug
-```
 
-### Run on Specific Browser
-```bash
-npm run test:chrome     # Chromium
-npm run test:firefox    # Firefox
-npm run test:webkit     # Safari
-```
+You disabled the log — good job.
 
-### Run in Parallel (4 workers)
-```bash
-npm run test:parallel
-```
+🧰 Core Utilities
+Runtime Store Example
+Runtime.set("SelectedFlightDate", "26");
+Runtime.get("SelectedFlightDate");
 
-### Run Specific Test
-```bash
-npx playwright test -g "Search one-way flight"
-```
 
-## 📊 Test Reports
+Enterprise clean:
 
-### View HTML Report
-```bash
-npm run test:report
-```
+// Store
+Runtime.set("CleanCheckOut", cleanAndConvertToDDMMYYYY(raw));
 
-**Report Locations:**
-- HTML: `playwright-report/`
-- JUnit: `test-results/junit.xml`
-- JSON: `test-results/results.json`
-- Logs: `logs/test_YYYY-MM-DD.log`
-│       ├── search.spec.ts     # Test cases for the search functionality
-│       └── booking.spec.ts    # Test cases for the booking process
-├── playwright.config.ts        # Playwright configuration file
-├── package.json                # npm configuration file
-├── tsconfig.json               # TypeScript configuration file
-└── README.md                   # Project documentation
-```
+// Retrieve
+const checkout = $("CleanCheckOut");
 
-## Setup Instructions
+Excel Auto Writer
+await FileUtils.writeTestCaseExcel(hotelList, testInfo);
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd makeMyTrip-playwright-tests
-   ```
 
-2. Install dependencies:
-   ```
-   npm install
-   ```
+Auto creates:
 
-3. Run the tests:
-   ```
-   npx playwright test
-   ```
+/reports/excel/TC_HotelBooking_2025-11-25_10-45.xlsx
 
-## Usage
+🧪 Running Tests
+Run All
+npx playwright test
 
-- The tests are organized into separate files based on functionality.
-- Each page object contains methods that interact with the respective page elements.
-- Utilize the logger utility for logging during test execution.
+Headed
+npx playwright test --headed
 
-## Contribution Guidelines
+Only 1 Test
+npx playwright test -g "Hotel Booking"
 
-- Fork the repository and create a new branch for your feature or bug fix.
-- Ensure that your code adheres to the project's coding standards.
-- Write tests for any new features or changes.
-- Submit a pull request for review.
+Open Report
+npx playwright show-report
+
+📊 Test Reporting
+Allure
+
+Generate:
+
+allure generate allure-results --clean -o allure-report
+
+
+Open:
+
+allure open allure-report
+
+
+Playwright automatically attaches:
+
+Screenshot
+
+Video
+
+Trace
+
+Error context
+
+Logs
+
+📤 Excel Export (Auto Test Data Writer)
+
+Your framework now exports:
+
+Hotel list (sorted high → low)
+
+Flight list
+
+Workflow outputs
+
+Auto file name:
+
+test_output/<TestCaseName>_<timestamp>.xlsx
+
+📘 Available Test Suites
+✔ EasyMyTrip – Hotel Booking
+
+Enter city
+
+Apply check-in / check-out
+
+Auto guest selection
+
+Child age randomization
+
+Room summary verification
+
+Sorting hotels
+
+Export hotel list to Excel
+
+✔ EasyMyTrip – Flight Booking
+
+Select flight type
+
+Dynamic date selection
+
+Auto runtime-store date click
+
+Guest logic (adult/child)
+
+Flight list extraction
+
+Dynamic XPath generation
+
+✔ Workflow Automation
+
+Start workflow
+
+Wait for state transition
+
+Read logs
+
+Validate outputs
+/...
+Enterprise wait loops
