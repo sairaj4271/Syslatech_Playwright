@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        // NodeJS path
         PATH = "C:/Program Files/nodejs/;${env.PATH}"
         CI = "true"
         PLAYWRIGHT_BROWSERS_PATH = "0"
@@ -70,6 +71,7 @@ pipeline {
 
     post {
 
+        // 🔁 This runs for BOTH success + failure
         always {
             echo "📦 Collecting Test Summary From JUnit XML..."
 
@@ -79,11 +81,10 @@ pipeline {
                 if (fileExists(junitFile)) {
                     def xml = new XmlSlurper().parse(junitFile)
 
-                    def total = xml.testsuite.@tests.toInteger()
+                    def total  = xml.testsuite.@tests.toInteger()
                     def failed = xml.testsuite.@failures.toInteger()
                     def passed = total - failed
 
-                    // Build failed test list
                     def failList = ""
                     xml.testsuite.testcase.each { tc ->
                         if (tc.failure.size() > 0) {
@@ -91,18 +92,21 @@ pipeline {
                         }
                     }
 
-                    env.TEST_TOTAL = total.toString()
+                    env.TEST_TOTAL  = total.toString()
                     env.TEST_PASSED = passed.toString()
                     env.TEST_FAILED = failed.toString()
                     env.FAILED_LIST = failList
                 } else {
-                    echo "⚠️ JUnit report not found"
-                    env.TEST_TOTAL = "0"
+                    echo "⚠️ JUnit report not found at ${junitFile}"
+                    env.TEST_TOTAL  = "0"
                     env.TEST_PASSED = "0"
                     env.TEST_FAILED = "0"
                     env.FAILED_LIST = "No data"
                 }
             }
+
+            echo "🧹 Cleaning workspace..."
+            cleanWs()
         }
 
         success {
@@ -121,10 +125,10 @@ Total Tests: ${env.TEST_TOTAL}
 Passed     : ${env.TEST_PASSED}
 Failed     : ${env.TEST_FAILED}
 
-Great job!  
+Great job!
 Check Jenkins Allure report if needed.
 
-Regards,  
+Regards,
 Jenkins
 """
         }
@@ -151,14 +155,9 @@ ${env.FAILED_LIST}
 
 Please check Allure & Playwright HTML reports for detailed errors.
 
-Regards,  
+Regards,
 Jenkins
 """
-        }
-
-        always {
-            echo "🧹 Cleaning workspace..."
-            cleanWs()
         }
     }
 }
