@@ -35,8 +35,8 @@
     "cross-env": "^7.0.3",
     "csv-parse": "^6.1.0",
     "dotenv": "^16.6.1",
+    "exceljs": "^4.4.0",
     "fs-extra": "^11.3.2",
-    "xlsx": "^0.18.5",
     "zod": "^4.1.12"
   },
   "devDependencies": {
