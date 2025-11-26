@@ -196,8 +196,8 @@ Jenkins Automated Notification
                 echo "⚠️ TESTS UNSTABLE"
                 
                 emailext(
-                    to: 'kandalsairaj95@gmail.com',
-                    from: 'kandalsairaj427gmail.com',  // ✅ ADD THIS
+                    to: 'kandalsairaj4271@gmail.com',
+                    from: 'kandalsairaj95@.com',  // ✅ ADD THIS
                     replyTo: 'kandalsairaj95@gmail.com',
                     subject: "⚠️ Playwright CI — UNSTABLE (${env.TEST_FAILED}/${env.TEST_TOTAL} failed) — Build #${env.BUILD_NUMBER}",
                     body: """
