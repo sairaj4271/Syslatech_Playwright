@@ -50,7 +50,7 @@ pipeline {
                             allure generate allure-results --clean -o allure-report
                         '''
                     } catch (Exception e) {
-                        echo "⚠️ Allure report generation failed: ${e.message}"
+                        echo "⚠️ Allure CLI not found, using Jenkins plugin"
                     }
                 }
             }
@@ -67,7 +67,7 @@ pipeline {
                     
                     archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true, fingerprint: true
                     archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true, fingerprint: true
-                    archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true, fingerprint: true
+                    archiveArtifacts artifacts: 'test-results/**', allowEmptyArchive: true, fingerprint: true
                 }
             }
         }
@@ -92,7 +92,6 @@ pipeline {
             script {
                 echo "🔍 Collecting test summary..."
                 
-                // Safe way to get test results without getRawBuild()
                 def testResultSummary = junit(testResults: 'reports/results.xml', allowEmptyResults: true)
                 
                 env.TEST_TOTAL = testResultSummary.totalCount?.toString() ?: "0"
@@ -115,59 +114,39 @@ pipeline {
                 
                 emailext(
                     to: 'kandalsairaj95@gmail.com',
+                    from: 'jenkins@yourcompany.com',  // ✅ ADD THIS - Different sender
+                    replyTo: 'kandalsairaj95@gmail.com',
                     subject: "✅ Playwright CI — SUCCESS — Build #${env.BUILD_NUMBER}",
                     body: """
-<html>
-<head>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .header { background: #4CAF50; color: white; padding: 20px; text-align: center; }
-        .content { padding: 20px; }
-        .summary { background: #f4f4f4; padding: 15px; border-radius: 5px; margin: 20px 0; }
-        .footer { background: #333; color: white; padding: 10px; text-align: center; font-size: 12px; }
-        table { width: 100%; border-collapse: collapse; }
-        td { padding: 8px; border-bottom: 1px solid #ddd; }
-        a { color: #1976D2; text-decoration: none; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h2>🎉 Playwright Test Pipeline - SUCCESS</h2>
-    </div>
-    <div class="content">
-        <p>Hello Sai,</p>
-        <p>Your Playwright test pipeline has <strong>completed successfully</strong>!</p>
-        
-        <div class="summary">
-            <h3>📊 Test Summary</h3>
-            <table>
-                <tr><td><strong>Build Number:</strong></td><td>#${env.BUILD_NUMBER}</td></tr>
-                <tr><td><strong>Duration:</strong></td><td>${env.BUILD_DURATION}</td></tr>
-                <tr><td><strong>Total Tests:</strong></td><td>${env.TEST_TOTAL}</td></tr>
-                <tr><td><strong>✅ Passed:</strong></td><td style="color: #4CAF50; font-weight: bold;">${env.TEST_PASSED}</td></tr>
-                <tr><td><strong>❌ Failed:</strong></td><td style="color: #f44336; font-weight: bold;">${env.TEST_FAILED}</td></tr>
-                <tr><td><strong>⏭️ Skipped:</strong></td><td>${env.TEST_SKIPPED}</td></tr>
-            </table>
-        </div>
-        
-        <p><strong>📈 View Reports:</strong></p>
-        <ul>
-            <li><a href="${env.BUILD_URL}allure">Allure Report</a></li>
-            <li><a href="${env.BUILD_URL}artifact/playwright-report/index.html">Playwright HTML Report</a></li>
-            <li><a href="${env.BUILD_URL}console">Console Output</a></li>
-        </ul>
-        
-        <p>Excellent work! 👍</p>
-    </div>
-    <div class="footer">
-        <p>Jenkins Automated Notification | ${new Date()}</p>
-    </div>
-</body>
-</html>
+Hello Sai,
+
+Your Playwright test pipeline completed successfully! 🎉
+
+Test Summary:
+-------------
+Total:   ${env.TEST_TOTAL}
+Passed:  ${env.TEST_PASSED}
+Failed:  ${env.TEST_FAILED}
+Skipped: ${env.TEST_SKIPPED}
+
+Build: #${env.BUILD_NUMBER}
+Duration: ${env.BUILD_DURATION}
+
+View Reports:
+- Allure: ${env.BUILD_URL}allure
+- HTML: ${env.BUILD_URL}artifact/playwright-report/index.html
+- Console: ${env.BUILD_URL}console
+
+Great job! 👍
+
+---
+Jenkins Automated Notification
                     """,
-                    mimeType: 'text/html',
+                    mimeType: 'text/plain',
                     attachLog: false
                 )
+                
+                echo "✅ Email sent to: kandalsairaj95@gmail.com"
             }
         }
 
@@ -177,66 +156,38 @@ pipeline {
                 
                 emailext(
                     to: 'kandalsairaj95@gmail.com',
+                    from: 'jenkins@yourcompany.com',  // ✅ ADD THIS
+                    replyTo: 'kandalsairaj95@gmail.com',
                     subject: "❌ Playwright CI — FAILED — Build #${env.BUILD_NUMBER}",
                     body: """
-<html>
-<head>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .header { background: #f44336; color: white; padding: 20px; text-align: center; }
-        .content { padding: 20px; }
-        .summary { background: #ffebee; padding: 15px; border-radius: 5px; border-left: 4px solid #f44336; margin: 20px 0; }
-        .footer { background: #333; color: white; padding: 10px; text-align: center; font-size: 12px; }
-        table { width: 100%; border-collapse: collapse; }
-        td { padding: 8px; border-bottom: 1px solid #ddd; }
-        a { color: #1976D2; text-decoration: none; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h2>❌ Playwright Test Pipeline - FAILED</h2>
-    </div>
-    <div class="content">
-        <p>Hello Sai,</p>
-        <p><strong>Your Playwright test pipeline has encountered failures.</strong></p>
-        
-        <div class="summary">
-            <h3>📊 Test Summary</h3>
-            <table>
-                <tr><td><strong>Build Number:</strong></td><td>#${env.BUILD_NUMBER}</td></tr>
-                <tr><td><strong>Duration:</strong></td><td>${env.BUILD_DURATION}</td></tr>
-                <tr><td><strong>Total Tests:</strong></td><td>${env.TEST_TOTAL}</td></tr>
-                <tr><td><strong>✅ Passed:</strong></td><td style="color: #4CAF50; font-weight: bold;">${env.TEST_PASSED}</td></tr>
-                <tr><td><strong>❌ Failed:</strong></td><td style="color: #f44336; font-weight: bold;">${env.TEST_FAILED}</td></tr>
-                <tr><td><strong>⏭️ Skipped:</strong></td><td>${env.TEST_SKIPPED}</td></tr>
-            </table>
-        </div>
-        
-        <p><strong>🔍 Investigation Steps:</strong></p>
-        <ol>
-            <li>Review the Allure Report for detailed test results</li>
-            <li>Check Playwright HTML Report for screenshots and traces</li>
-            <li>Analyze Console Output for error messages</li>
-        </ol>
-        
-        <p><strong>📈 Quick Links:</strong></p>
-        <ul>
-            <li><a href="${env.BUILD_URL}allure">Allure Report</a></li>
-            <li><a href="${env.BUILD_URL}artifact/playwright-report/index.html">Playwright HTML Report</a></li>
-            <li><a href="${env.BUILD_URL}console">Console Output</a></li>
-            <li><a href="${env.BUILD_URL}rebuild">🔄 Rebuild</a></li>
-        </ul>
-    </div>
-    <div class="footer">
-        <p>Jenkins Automated Notification | ${new Date()}</p>
-    </div>
-</body>
-</html>
+Hello Sai,
+
+Your Playwright test pipeline FAILED ⚠️
+
+Test Summary:
+-------------
+Total:   ${env.TEST_TOTAL}
+Passed:  ${env.TEST_PASSED}
+Failed:  ${env.TEST_FAILED}
+Skipped: ${env.TEST_SKIPPED}
+
+Build: #${env.BUILD_NUMBER}
+Duration: ${env.BUILD_DURATION}
+
+Investigation Steps:
+1. Review Allure Report: ${env.BUILD_URL}allure
+2. Check HTML Report: ${env.BUILD_URL}artifact/playwright-report/index.html
+3. View Console: ${env.BUILD_URL}console
+
+---
+Jenkins Automated Notification
                     """,
-                    mimeType: 'text/html',
+                    mimeType: 'text/plain',
                     attachLog: true,
                     compressLog: true
                 )
+                
+                echo "✅ Email sent to: kandalsairaj95@gmail.com"
             }
         }
 
@@ -246,29 +197,40 @@ pipeline {
                 
                 emailext(
                     to: 'kandalsairaj95@gmail.com',
-                    subject: "⚠️ Playwright CI — UNSTABLE — Build #${env.BUILD_NUMBER}",
+                    from: 'kandalsairaj427gmail.com',  // ✅ ADD THIS
+                    replyTo: 'kandalsairaj95@gmail.com',
+                    subject: "⚠️ Playwright CI — UNSTABLE (${env.TEST_FAILED}/${env.TEST_TOTAL} failed) — Build #${env.BUILD_NUMBER}",
                     body: """
-<html>
-<body style="font-family: Arial, sans-serif;">
-    <h2 style="color: #ff9800;">⚠️ Playwright Tests - UNSTABLE</h2>
-    <p>Hello Sai,</p>
-    <p>Some tests failed but the build continued.</p>
-    
-    <h3>Test Summary:</h3>
-    <ul>
-        <li>Build: #${env.BUILD_NUMBER}</li>
-        <li>Duration: ${env.BUILD_DURATION}</li>
-        <li>Total: ${env.TEST_TOTAL}</li>
-        <li>Passed: ${env.TEST_PASSED}</li>
-        <li>Failed: ${env.TEST_FAILED}</li>
-    </ul>
-    
-    <p><a href="${env.BUILD_URL}">View Build Details</a></p>
-</body>
-</html>
+Hello Sai,
+
+Your Playwright test pipeline is UNSTABLE - some tests failed.
+
+Test Summary:
+-------------
+Total:   ${env.TEST_TOTAL}
+Passed:  ${env.TEST_PASSED}  ✅
+Failed:  ${env.TEST_FAILED}  ❌
+Skipped: ${env.TEST_SKIPPED}  ⏭️
+
+Build: #${env.BUILD_NUMBER}
+Duration: ${env.BUILD_DURATION}
+
+Quick Links:
+- Allure Report: ${env.BUILD_URL}allure
+- Playwright Report: ${env.BUILD_URL}artifact/playwright-report/index.html
+- Console Output: ${env.BUILD_URL}console
+- Rebuild: ${env.BUILD_URL}rebuild
+
+Please check the failed tests and fix them.
+
+---
+Jenkins Automated Notification
                     """,
-                    mimeType: 'text/html'
+                    mimeType: 'text/plain',
+                    attachLog: false
                 )
+                
+                echo "✅ Email sent to: kandalsairaj95@gmail.com"
             }
         }
     }
