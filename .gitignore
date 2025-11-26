@@ -18,6 +18,12 @@ playwright-report/
 test-results/
 coverage/
 .nyc_output/
+reports/
+
+# Allure Reports
+allure-results/
+allure-report/
+.allure/
 
 # Logs
 logs/
@@ -30,18 +36,44 @@ yarn-error.log*
 screenshots/
 videos/
 
-# IDE
+# IDE & Editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-.DS_Store
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
 
-# OS
+# OS Files
+.DS_Store
 Thumbs.db
 desktop.ini
+*.bak
 
 # Playwright
 .auth/
 .cache/
+
+# Temporary Files
+*.tmp
+*.temp
+~$*
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
