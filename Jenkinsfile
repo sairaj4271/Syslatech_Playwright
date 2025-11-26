@@ -82,7 +82,7 @@ pipeline {
         success {
             echo "🎉 TESTS PASSED"
             emailext(
-                to: 'sairaj@syslatech.com',
+                to: 'kandalsairaj95@gmail.com',
                 subject: "✅ Playwright CI — SUCCESS (${env.TEST_PASSED}/${env.TEST_TOTAL})",
                 body: """
 Hello Sai,
@@ -111,7 +111,7 @@ Jenkins
         failure {
             echo "❌ TESTS FAILED"
             emailext(
-                to: 'sairaj@syslatech.com',
+                to: 'kandalsairaj95@gmail.com',
                 subject: "❌ Playwright CI — FAILED (${env.TEST_FAILED} failures)",
                 body: """
 Hello Sai,

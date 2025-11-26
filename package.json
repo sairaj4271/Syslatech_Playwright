@@ -45,6 +45,7 @@
     "@types/jquery": "^3.5.33",
     "@types/node": "^20.12.12",
     "allure-playwright": "^3.4.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5"
   },
   "type": "commonjs"

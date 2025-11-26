@@ -1,4 +1,7 @@
 // playwright.config.ts
+
+
+
 import { defineConfig } from "@playwright/test";
 import { configManager } from "./src/config/env.index";
 import "./src/utils/runtimeGlobal";
@@ -54,9 +57,6 @@ export default defineConfig({
     },
   ],
 
-  // ------------------------------
-  // CORRECTED REPORTER SECTION
-  // ------------------------------
   reporter: isCI
     ? [
         ["list"],
