@@ -31,6 +31,22 @@ export class EasyMyTripPageForFlight extends BasePage {
     guest: Locator;
     businessClassOption: Locator;  
     datetoday: any;
+    hotelname:any;
+    hotelpriceText:any;
+    ViewDetails:any;
+    hotelList:any;
+    selecteddate:any
+    ContinueTocheckout:any
+    FlightDetails:any
+    flightId:any;
+    fightlist:any;
+    
+   
+    
+
+    
+
+    
 
     constructor(page: Page) {
         super(page);    
@@ -55,7 +71,13 @@ export class EasyMyTripPageForFlight extends BasePage {
         this.bangaloreOption = this.getLocator('//*[text()="Bengaluru(BLR)"]');
         this.guest = this.getLocator('//*[text()="Guests & Class "]');
         this.businessClassOption = this.getLocator('//*[text()=" Business "]');
-
+        this.hotelname= this.getLocator('//div[contains(@class,"htl_")]');
+        this.hotelpriceText = this.getLocator('//div[contains(@class,"act_price")]')
+        this.ViewDetails =this.getLocator('//*[text()="View Details"]')
+        this.selecteddate = this.getLocator('//div[@class="fare-cal day availabledt"]/..//span[@class="date-b"]');
+        this.ContinueTocheckout = this.getLocator('//*[text()="Continue To checkout"]')
+        this.FlightDetails = this.getLocator('//div[@class="air-nme"]')
+        this.flightId = this.getLocator('//div[@class="aircode"]')
     }
 
     async easyMyTripFlightBookingPage() {
@@ -105,26 +127,110 @@ export class EasyMyTripPageForFlight extends BasePage {
         await this.click(this.searchButton);
         await this.waitForElementToDisappear(this.loader);
 
-       
-
-
     }
 
+ async getHighestHotelAndClick() {
 
+  const count = await this.page.locator("//div[contains(@class,'htl_')]").count();
+  await  this.storeTextContent(this.hotelname.nth(3) , "names")
+   console.log("namesis", $("names"));
 
+    console.log(count);
 
+  let hotelList: { name: string; price: number }[] = [];
 
+  
+  for (let i = 0; i < count; i++) {
 
+    const hotelNames = await this.hotelname.nth(i).textContent() || "";
+    const hotelPriceText = await this.hotelpriceText.nth(i).textContent() || "0";
 
+    const hotelPrice = parseInt(hotelPriceText.replace(/[^0-9]/g, "")) || 0;
 
+    hotelList.push({
+      name: hotelNames.trim(),
+      price: hotelPrice,
+    });
 
+    hotelList.sort((a, b) => b.price - a.price);
+  }
 
+  
+  //hotelList.sort((a, b) => b.price - a.price);
 
+  
+  const highestHotel = hotelList[0];
+  console.log("Highest Hotel:", highestHotel);
 
+ 
+  Runtime.set("highest_hotel", highestHotel.name);
+  console.log($("highest_hotel")) 
 
+   await this.page.locator(`//div[contains(text(),"${$("highest_hotel")}")]/../../..//*[text()="View Details"]`).click()
 
+   return hotelList;
+}
+async Chectout(){
 
+   await this.waitForElementToDisappear(this.loader);
+   await this.waitForElementIsVisible(this.ContinueTocheckout);
+
+  await this.storeTextContent(this.selecteddate , "chectout")
+  await expect($("chectout")).toBe($("SelectedFlightDate"))
+        const  counts = await this.page.locator("//div[@class='air-nme']").count();
+
+  let fightlist: {fight:string , fightid:string} [] =[];
+
+  for(let i =0; i<counts; i++){
+        
+        await  this.storeTextContent(this.FlightDetails.nth(i) , "flightnames")
+        await this.storeTextContent( this.flightId.nth(i),  "flightid")
+              
+      fightlist.push({
+        fight:$("flightnames"),
+        fightid:$("flightid"),
+
+       
+
+      });
+
+     
+  }
+     await this.click(this.ContinueTocheckout)
+     await this.waitForElementToDisappear(this.loader);
+     //await this.waitForElementIsVisible(this.ContinueTocheckout);
+     return fightlist;
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+ }   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

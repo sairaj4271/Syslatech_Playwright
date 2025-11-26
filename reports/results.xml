@@ -1,48 +1,72 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="48.398949">
-<testsuite name="esaymytripfight.spec.ts" timestamp="2025-11-26T07:05:58.631Z" hostname="chromium" tests="1" failures="0" skipped="0" time="45.035" errors="0">
-<testcase name="EasyMyTrip fight Booking Test" classname="esaymytripfight.spec.ts" time="45.035">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="36.539024">
+<testsuite name="esaymytripfight.spec.ts" timestamp="2025-11-26T12:12:19.810Z" hostname="chromium" tests="1" failures="0" skipped="0" time="33.87" errors="0">
+<testcase name="EasyMyTrip fight Booking Test" classname="esaymytripfight.spec.ts" time="33.87">
 <system-out>
 <![CDATA[ Click → flightTab
-[90m[2025-11-26T07:06:08.847Z] [DEBUG] Click → flightTab[0m
+[90m[2025-11-26T12:12:28.341Z] [DEBUG] Click → flightTab[0m
  Click → RoundTrip
-[90m[2025-11-26T07:06:10.485Z] [DEBUG] Click → RoundTrip[0m
+[90m[2025-11-26T12:12:29.516Z] [DEBUG] Click → RoundTrip[0m
  Click → departureAirport
-[90m[2025-11-26T07:06:12.143Z] [DEBUG] Click → departureAirport[0m
+[90m[2025-11-26T12:12:30.951Z] [DEBUG] Click → departureAirport[0m
  Type → fromAirportInput | Value: chennai | Delay: 0ms
-[90m[2025-11-26T07:06:12.433Z] [DEBUG] Type → fromAirportInput | value="chennai"[0m
+[90m[2025-11-26T12:12:31.210Z] [DEBUG] Type → fromAirportInput | value="chennai"[0m
  Click → chennaiOption
-[90m[2025-11-26T07:06:13.637Z] [DEBUG] Click → chennaiOption[0m
+[90m[2025-11-26T12:12:32.150Z] [DEBUG] Click → chennaiOption[0m
  Click → DestinationAirport
-[90m[2025-11-26T07:06:13.972Z] [DEBUG] Click → DestinationAirport[0m
+[90m[2025-11-26T12:12:32.432Z] [DEBUG] Click → DestinationAirport[0m
  Type → toAirportInput | Value: bangalore | Delay: 0ms
-[90m[2025-11-26T07:06:14.381Z] [DEBUG] Type → toAirportInput | value="bangalore"[0m
+[90m[2025-11-26T12:12:32.660Z] [DEBUG] Type → toAirportInput | value="bangalore"[0m
  Click → bangaloreOption
-[90m[2025-11-26T07:06:15.207Z] [DEBUG] Click → bangaloreOption[0m
+[90m[2025-11-26T12:12:33.498Z] [DEBUG] Click → bangaloreOption[0m
  Click → TravelDate
-[90m[2025-11-26T07:06:15.436Z] [DEBUG] Click → TravelDate[0m
+[90m[2025-11-26T12:12:33.720Z] [DEBUG] Click → TravelDate[0m
 [RUNTIME] STORED → SelectedFlightDate: 26
  Click → retrunTravelDate
-[90m[2025-11-26T07:06:16.046Z] [DEBUG] Click → retrunTravelDate[0m
+[90m[2025-11-26T12:12:34.175Z] [DEBUG] Click → retrunTravelDate[0m
 [RUNTIME] STORED → SelectedReturnDate: 01
  Click → guest
-[90m[2025-11-26T07:06:33.819Z] [DEBUG] Click → guest[0m
+[90m[2025-11-26T12:12:40.326Z] [DEBUG] Click → guest[0m
 [RUNTIME] STORED → AdultCounts: 1
  Click → adultplus
-[90m[2025-11-26T07:06:34.344Z] [DEBUG] Click → adultplus[0m
+[90m[2025-11-26T12:12:40.833Z] [DEBUG] Click → adultplus[0m
 Adult count increased to 2
 [RUNTIME] STORED → AdultCounts: 2
  Click → childplus
-[90m[2025-11-26T07:06:34.820Z] [DEBUG] Click → childplus[0m
+[90m[2025-11-26T12:12:41.347Z] [DEBUG] Click → childplus[0m
 Child count increased to 1
  Click → businessClassOption
-[90m[2025-11-26T07:06:35.320Z] [DEBUG] Click → businessClassOption[0m
+[90m[2025-11-26T12:12:41.548Z] [DEBUG] Click → businessClassOption[0m
  Click → DoneButton
-[90m[2025-11-26T07:06:35.546Z] [DEBUG] Click → DoneButton[0m
+[90m[2025-11-26T12:12:41.727Z] [DEBUG] Click → DoneButton[0m
  Click → searchButton
-[90m[2025-11-26T07:06:35.909Z] [DEBUG] Click → searchButton[0m
+[90m[2025-11-26T12:12:41.921Z] [DEBUG] Click → searchButton[0m
  Wait For Disappear → loader (Timeout: 60000ms)
-[90m[2025-11-26T07:06:37.487Z] [DEBUG] Wait: hidden → id="Loader"]') | timeout: 60000ms[0m
-[90m[2025-11-26T07:06:39.392Z] [DEBUG] Hidden in 1904ms → id="Loader"]')[0m
+[90m[2025-11-26T12:12:42.931Z] [DEBUG] Wait: hidden → id="Loader"]') | timeout: 60000ms[0m
+[90m[2025-11-26T12:12:44.387Z] [DEBUG] Hidden in 1456ms → id="Loader"]')[0m
+[RUNTIME] STORED → names: Treebo Anjani Fortune Suites
+namesis Treebo Anjani Fortune Suites
+[33m5[39m
+Highest Hotel: { name: [32m'Ramee Guestline Hotel'[39m, price: [33m353010[39m }
+[RUNTIME] STORED → highest_hotel: Ramee Guestline Hotel
+Ramee Guestline Hotel
+📁 Excel saved → C:\enterprise-playwright-tests\test-results\excel\Excel_EasyMyTrip_fight_Booking_Test_2025-11-26T12-12-45-952Z.xlsx
+ Wait For Disappear → loader (Timeout: 60000ms)
+[90m[2025-11-26T12:12:46.365Z] [DEBUG] Wait: hidden → id="Loader"]') | timeout: 60000ms[0m
+[90m[2025-11-26T12:12:47.694Z] [DEBUG] Hidden in 1328ms → id="Loader"]')[0m
+ Wait For Visible → ContinueTocheckout (Timeout: 60000ms)
+[90m[2025-11-26T12:12:47.698Z] [DEBUG] Wait: visible → Continue To checkout | timeout: 60000ms[0m
+[90m[2025-11-26T12:12:47.785Z] [DEBUG] Visible in 86ms → Continue To checkout[0m
+[RUNTIME] STORED → chectout: 26
+[RUNTIME] STORED → flightnames: Air India
+[RUNTIME] STORED → flightid: AI-436
+[RUNTIME] STORED → flightnames: Air India
+[RUNTIME] STORED → flightid: AI-2642
+ Click → ContinueTocheckout
+[90m[2025-11-26T12:12:48.223Z] [DEBUG] Click → ContinueTocheckout[0m
+ Wait For Disappear → loader (Timeout: 60000ms)
+[90m[2025-11-26T12:12:50.206Z] [DEBUG] Wait: hidden → id="Loader"]') | timeout: 60000ms[0m
+[90m[2025-11-26T12:12:50.943Z] [DEBUG] Hidden in 737ms → id="Loader"]')[0m
+📁 Excel saved → C:\enterprise-playwright-tests\test-results\excel\Excel_EasyMyTrip_fight_Booking_Test_2025-11-26T12-12-50-943Z.xlsx
 ]]>
 </system-out>
 </testcase>
