@@ -113,9 +113,9 @@ pipeline {
                 echo "🎉 TESTS PASSED"
                 
                 emailext(
-                    to: 'kandalsairaj95@gmail.com',
-                    from: 'jenkins@yourcompany.com',  // ✅ ADD THIS - Different sender
-                    replyTo: 'kandalsairaj95@gmail.com',
+                    to: 'kandalsairaj4271@gmail.com',
+                    from: 'kandalsairaj95@gmail.com',  // ✅ ADD THIS - Different sender
+                    replyTo: 'kandalsairaj4271@gmail.com',
                     subject: "✅ Playwright CI — SUCCESS — Build #${env.BUILD_NUMBER}",
                     body: """
 Hello Sai,
@@ -146,7 +146,7 @@ Jenkins Automated Notification
                     attachLog: false
                 )
                 
-                echo "✅ Email sent to: kandalsairaj95@gmail.com"
+                echo "✅ Email sent to: kandalsairaj4271@gmail.com"
             }
         }
 
@@ -155,9 +155,9 @@ Jenkins Automated Notification
                 echo "❌ TESTS FAILED"
                 
                 emailext(
-                    to: 'kandalsairaj95@gmail.com',
-                    from: 'jenkins@yourcompany.com',  // ✅ ADD THIS
-                    replyTo: 'kandalsairaj95@gmail.com',
+                    to: 'kandalsairaj4271@gmail.com',
+                    from: 'kandalsairaj95@gmail.com',  // ✅ ADD THIS
+                    replyTo: 'kandalsairaj4271@gmail.com',
                     subject: "❌ Playwright CI — FAILED — Build #${env.BUILD_NUMBER}",
                     body: """
 Hello Sai,
@@ -198,7 +198,7 @@ Jenkins Automated Notification
                 emailext(
                     to: 'kandalsairaj4271@gmail.com',
                     from: 'kandalsairaj95@.com',  // ✅ ADD THIS
-                    replyTo: 'kandalsairaj95@gmail.com',
+                    replyTo: 'kandalsairaj4271@gmail.com',
                     subject: "⚠️ Playwright CI — UNSTABLE (${env.TEST_FAILED}/${env.TEST_TOTAL} failed) — Build #${env.BUILD_NUMBER}",
                     body: """
 Hello Sai,
@@ -230,7 +230,7 @@ Jenkins Automated Notification
                     attachLog: false
                 )
                 
-                echo "✅ Email sent to: kandalsairaj95@gmail.com"
+                echo "✅ Email sent to: kandalsairaj4271@gmail.com"
             }
         }
     }
