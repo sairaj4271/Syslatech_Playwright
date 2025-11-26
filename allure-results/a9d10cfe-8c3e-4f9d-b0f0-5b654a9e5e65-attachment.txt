@@ -1,0 +1,96 @@
+ Wait For Visible → hotelBooking (Timeout: 60000ms)
+[2025-11-25T16:23:08.962Z] [DEBUG] Wait: visible → HOTELS | timeout: 60000ms
+[2025-11-25T16:23:09.405Z] [DEBUG] Visible in 442ms → HOTELS
+[RUNTIME] STORED → HotelBookingTab: Hotels
+Hotel Booking Tab Text Stored Successfully Hotels
+ Click → hotelBooking
+[2025-11-25T16:23:09.510Z] [DEBUG] Click → hotelBooking
+ Wait For Visible → enterCityName (Timeout: 60000ms)
+[2025-11-25T16:23:11.575Z] [DEBUG] Wait: visible → class,\'selectHtlCity\')]') | timeout: 60000ms
+[2025-11-25T16:23:14.228Z] [DEBUG] Visible in 2652ms → class,\'selectHtlCity\')]')
+ Click → enterCityName
+[2025-11-25T16:23:14.229Z] [DEBUG] Click → enterCityName
+ Type → enteringCityName | Value: Goa | Delay: 0ms
+[2025-11-25T16:23:16.460Z] [DEBUG] Type → enteringCityName | value="Goa"
+Entered City Name:  North Goa
+ Click → check_In
+[2025-11-25T16:23:18.637Z] [DEBUG] Click → check_In
+ Click → check_out
+[2025-11-25T16:23:19.909Z] [DEBUG] Click → check_out
+[RUNTIME] STORED → RawCheckIn: 27Nov'2025
+[RUNTIME] STORED → RawCheckOut: 28Nov'2025
+[RUNTIME] STORED → CleanCheckIn: 27/11/2025
+[RUNTIME] STORED → CleanCheckOut: 28/11/2025
+Converted Check-In: 27/11/2025
+Converted Check-Out: 28/11/2025
+ Wait For Visible → room_guests (Timeout: 60000ms)
+[2025-11-25T16:23:23.933Z] [DEBUG] Wait: visible → <element> | timeout: 60000ms
+[2025-11-25T16:23:24.125Z] [DEBUG] Visible in 191ms → <element>
+ Wait For Visible → adult_count (Timeout: 60000ms)
+[2025-11-25T16:23:24.271Z] [DEBUG] Wait: visible → id="Adults_room_1_1"]') | timeout: 60000ms
+[2025-11-25T16:23:24.401Z] [DEBUG] Visible in 129ms → id="Adults_room_1_1"]')
+ Wait For Visible → child_count (Timeout: 60000ms)
+[2025-11-25T16:23:24.404Z] [DEBUG] Wait: visible → Children_room_1_1 | timeout: 60000ms
+[2025-11-25T16:23:24.573Z] [DEBUG] Visible in 167ms → Children_room_1_1
+Adult Count in Room 1:  2
+Child Count in Room 1:  0
+ Click → child_plus
+[2025-11-25T16:23:24.824Z] [DEBUG] Click → child_plus
+ Wait For Visible → ages (Timeout: 60000ms)
+[2025-11-25T16:23:25.566Z] [DEBUG] Wait: visible → Child_Age_1_1 | timeout: 60000ms
+[2025-11-25T16:23:25.735Z] [DEBUG] Visible in 169ms → Child_Age_1_1
+Between 2 and 12 → 7
+ Select Option → ages | Value: "7"
+ Click → addRoom
+[2025-11-25T16:23:25.931Z] [DEBUG] Click → addRoom
+ Wait For Visible → Room_2 (Timeout: 60000ms)
+[2025-11-25T16:23:26.645Z] [DEBUG] Wait: visible → <element> | timeout: 60000ms
+[2025-11-25T16:23:26.808Z] [DEBUG] Visible in 163ms → <element>
+ Click → done
+[2025-11-25T16:23:27.482Z] [DEBUG] Click → done
+Room and Guests Selected:  2 Room, 6 Guests
+ Wait For Visible → searchHotels (Timeout: 60000ms)
+[2025-11-25T16:23:28.830Z] [DEBUG] Wait: visible → id="btnSearch"]') | timeout: 60000ms
+[2025-11-25T16:23:28.929Z] [DEBUG] Visible in 99ms → id="btnSearch"]')
+ Click → searchHotels
+[2025-11-25T16:23:28.930Z] [DEBUG] Click → searchHotels
+ Wait For Visible → afterenteredCityName (Timeout: 60000ms)
+[2025-11-25T16:23:30.259Z] [DEBUG] Wait: visible → City name, Location or Specific hotel | timeout: 60000ms
+[2025-11-25T16:23:32.029Z] [DEBUG] Visible in 1770ms → City name, Location or Specific hotel
+Expected City Name:  North Goa
+Actual City Name from page:  North Goa, India
+ City name verification passed
+ Wait For Visible → AfterenteredRoomsGuests (Timeout: 60000ms)
+[2025-11-25T16:23:33.771Z] [DEBUG] Wait: visible → guests_selected guests-selected | timeout: 60000ms
+[2025-11-25T16:23:33.904Z] [DEBUG] Visible in 133ms → guests_selected guests-selected
+Expected Rooms/Guests:  2 Room, 6 Guests
+Actual Rooms/Guests:  2 Room, 6 Guests
+ Rooms and guests verification passed
+[RUNTIME] STORED → Check_In_Date: 27/11/2025
+[RUNTIME] STORED → Check_Out_Date: 28/11/2025
+ Check-In and Check-Out date verification passed
+ Wait For Visible → Popularity (Timeout: 60000ms)
+[2025-11-25T16:23:34.559Z] [DEBUG] Wait: visible → Popularity | timeout: 60000ms
+[2025-11-25T16:23:34.725Z] [DEBUG] Visible in 166ms → Popularity
+ Click → Popularity
+[2025-11-25T16:23:34.727Z] [DEBUG] Click → Popularity
+ Wait For Visible → Price (Timeout: 60000ms)
+[2025-11-25T16:23:35.333Z] [DEBUG] Wait: visible → High to Low | timeout: 60000ms
+[2025-11-25T16:23:35.426Z] [DEBUG] Visible in 93ms → High to Low
+ Click → Price
+[2025-11-25T16:23:35.428Z] [DEBUG] Click → Price
+Total Hotels Found:  7
+Hotels sorted by Price (High to Low): [
+  {
+    name: 'Doubletree By Hilton Goa-Panaji',
+    price: 18000,
+    reviews: ''
+  },
+  { name: 'The Fern Kadamba Hotel And Spa', price: 17599, reviews: '' },
+  { name: 'Mercure Goa Devaaya Resort', price: 11550, reviews: '' },
+  { name: 'Comfort Inn Elite Goa', price: 10000, reviews: '' },
+  { name: 'Hotel Menino Executive', price: 9678, reviews: '' },
+  { name: 'Visao', price: 8952, reviews: '' },
+  { name: 'Hotel Swarnam', price: 8408, reviews: '' }
+]
+📁 Excel saved → C:\enterprise-playwright-tests\test-results\excel\Excel_EasyMyTrip_Hotel_Booking_Test_2025-11-25T16-23-41-029Z.xlsx

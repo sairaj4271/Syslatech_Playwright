@@ -4,7 +4,7 @@ pipeline {
     environment {
         PATH = "C:/Program Files/nodejs/;${env.PATH}"
         CI = "true"
-        PLAYWRIGHT_BROWSERS_PATH = "0"
+        // REMOVED: PLAYWRIGHT_BROWSERS_PATH = "0"
     }
 
     options {
@@ -15,7 +15,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
@@ -37,7 +36,8 @@ pipeline {
 
         stage('Run Playwright Tests') {
             steps {
-                bat 'npx playwright test --workers=2 --retries=2'
+                // Let config control workers (3) or keep --workers=2
+                bat 'npx playwright test --retries=2'
             }
         }
 
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 bat '''
                     if exist allure-report rmdir /s /q allure-report
-                    allure generate allure-results --clean -o allure-report || exit 0
+                    allure generate allure-results --clean -o allure-report
                 '''
             }
         }
@@ -69,22 +69,20 @@ pipeline {
     }
 
     post {
-
         always {
-            echo "🔍 Collecting test summary (from JUnit plugin)..."
-
+            echo "🔍 Collecting test summary..."
             script {
-                // Jenkins automatically stores JUnit numbers into environment variables
-                env.TEST_TOTAL   = currentBuild.rawBuild.getAction(hudson.tasks.junit.TestResultAction)?.totalCount ?: "0"
-                env.TEST_FAILED  = currentBuild.rawBuild.getAction(hudson.tasks.junit.TestResultAction)?.failCount ?: "0"
-                env.TEST_SKIPPED = currentBuild.rawBuild.getAction(hudson.tasks.junit.TestResultAction)?.skipCount ?: "0"
+                def testResultAction = currentBuild.rawBuild.getAction(hudson.tasks.junit.TestResultAction)
+                
+                env.TEST_TOTAL   = testResultAction?.totalCount?.toString() ?: "0"
+                env.TEST_FAILED  = testResultAction?.failCount?.toString() ?: "0"
+                env.TEST_SKIPPED = testResultAction?.skipCount?.toString() ?: "0"
                 env.TEST_PASSED  = (env.TEST_TOTAL.toInteger() - env.TEST_FAILED.toInteger()).toString()
             }
         }
 
         success {
             echo "🎉 TESTS PASSED"
-
             emailext(
                 to: 'sairaj@syslatech.com',
                 subject: "Playwright CI — SUCCESS ✔ (${env.TEST_PASSED}/${env.TEST_TOTAL})",
@@ -110,7 +108,6 @@ Jenkins
 
         failure {
             echo "❌ TESTS FAILED"
-
             emailext(
                 to: 'sairaj@syslatech.com',
                 subject: "Playwright CI — FAILED ❌ (${env.TEST_FAILED} failed)",

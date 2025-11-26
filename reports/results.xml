@@ -1,89 +1,103 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="821.994471">
-<testsuite name="easyMyTrip.spec.ts" timestamp="2025-11-25T15:02:21.207Z" hostname="chromium" tests="1" failures="1" skipped="0" time="4.771" errors="0">
-<testcase name="EasyMyTrip Hotel Booking Test" classname="easyMyTrip.spec.ts" time="4.771">
-<failure message="easyMyTrip.spec.ts:8:5 EasyMyTrip Hotel Booking Test" type="FAILURE">
-<![CDATA[  [chromium] › easyMyTrip.spec.ts:8:5 › EasyMyTrip Hotel Booking Test ──────────────────────────────
-
-    Error: locator.waitFor: TypeError: Failed to execute 'evaluate' on 'Document': The result is not a node set, and therefore cannot be converted to the desired type.
-        at Object.queryAll (<anonymous>:5979:25)
-        at InjectedScript._queryEngineAll (<anonymous>:6664:49)
-        at InjectedScript.querySelectorAll (<anonymous>:6651:30)
-        at eval (eval at evaluate (:290:30), <anonymous>:4:35)
-        at UtilityScript.evaluate (<anonymous>:292:16)
-        at UtilityScript.<anonymous> (<anonymous>:1:44)
-    Call log:
-      - waiting for locator('xpath=(//span[text()="HOTELS"])[1] or (//span[text()="Hotels"])[1]') to be visible
-
-        at Object.queryAll (<anonymous>:5979:25)
-        at InjectedScript._queryEngineAll (<anonymous>:6664:49)
-        at InjectedScript.querySelectorAll (<anonymous>:6651:30)
-        at eval (eval at evaluate (:290:30), <anonymous>:4:35)
-        at UtilityScript.evaluate (<anonymous>:292:16)
-        at UtilityScript.<anonymous> (<anonymous>:1:44)
-        at Function.waitForElementIsVisible (C:\enterprise-playwright-tests\src\utils\waitUtils.ts:116:21)
-        at fn (C:\enterprise-playwright-tests\src\pages\basePage.ts:703:25)
-        at Function.handle (C:\enterprise-playwright-tests\src\utils\errorHandler.ts:71:20)
-        at EasyMyTripPage.waitForElementIsVisible (C:\enterprise-playwright-tests\src\pages\basePage.ts:701:25)
-        at EasyMyTripPage.hotelBookingPage (C:\enterprise-playwright-tests\src\pages\easyMyTrip.ts:87:16)
-        at C:\enterprise-playwright-tests\src\tests\easyMyTrip.spec.ts:14:26
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\error-context.md
-
-    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="46.632178">
+<testsuite name="easyMyTrip.spec.ts" timestamp="2025-11-25T16:22:57.183Z" hostname="chromium" tests="1" failures="0" skipped="0" time="42.427" errors="0">
+<testcase name="EasyMyTrip Hotel Booking Test" classname="easyMyTrip.spec.ts" time="42.427">
 <system-out>
 <![CDATA[ Wait For Visible → hotelBooking (Timeout: 60000ms)
-[90m[2025-11-25T15:02:29.310Z] [DEBUG] Wait: visible → HOTELS | timeout: 60000ms[0m
-[31m[2025-11-25T15:02:29.442Z] [ERROR] Timeout after 129ms → HOTELS[0m
-[31m[2025-11-25T15:02:29.442Z] [ERROR]  Error in BasePage.waitForElementIsVisible (hotelBooking): locator.waitFor: TypeError: Failed to execute 'evaluate' on 'Document': The result is not a node set, and therefore cannot be converted to the desired type.
-    at Object.queryAll (<anonymous>:5979:25)
-    at InjectedScript._queryEngineAll (<anonymous>:6664:49)
-    at InjectedScript.querySelectorAll (<anonymous>:6651:30)
-    at eval (eval at evaluate (:290:30), <anonymous>:4:35)
-    at UtilityScript.evaluate (<anonymous>:292:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-Call log:
-[2m  - waiting for locator('xpath=(//span[text()="HOTELS"])[1] or (//span[text()="Hotels"])[1]') to be visible[22m
-[0m
-[31m[2025-11-25T15:02:29.443Z] [ERROR] locator.waitFor: TypeError: Failed to execute 'evaluate' on 'Document': The result is not a node set, and therefore cannot be converted to the desired type.
-    at Object.queryAll (<anonymous>:5979:25)
-    at InjectedScript._queryEngineAll (<anonymous>:6664:49)
-    at InjectedScript.querySelectorAll (<anonymous>:6651:30)
-    at eval (eval at evaluate (:290:30), <anonymous>:4:35)
-    at UtilityScript.evaluate (<anonymous>:292:16)
-    at UtilityScript.<anonymous> (<anonymous>:1:44)
-Call log:
-[2m  - waiting for locator('xpath=(//span[text()="HOTELS"])[1] or (//span[text()="Hotels"])[1]') to be visible[22m
-
-    at Function.waitForElementIsVisible (C:\enterprise-playwright-tests\src\utils\waitUtils.ts:116:21)
-    at fn (C:\enterprise-playwright-tests\src\pages\basePage.ts:703:25)
-    at Function.handle (C:\enterprise-playwright-tests\src\utils\errorHandler.ts:71:20)
-    at EasyMyTripPage.waitForElementIsVisible (C:\enterprise-playwright-tests\src\pages\basePage.ts:701:25)
-    at EasyMyTripPage.hotelBookingPage (C:\enterprise-playwright-tests\src\pages\easyMyTrip.ts:87:16)
-    at C:\enterprise-playwright-tests\src\tests\easyMyTrip.spec.ts:14:26[0m
-
-[[ATTACHMENT|..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\video.webm]]
-
-[[ATTACHMENT|..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\error-context.md]]
-
-[[ATTACHMENT|..\test-results\easyMyTrip-EasyMyTrip-Hotel-Booking-Test-chromium\trace.zip]]
+[90m[2025-11-25T16:23:08.962Z] [DEBUG] Wait: visible → HOTELS | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:09.405Z] [DEBUG] Visible in 442ms → HOTELS[0m
+[RUNTIME] STORED → HotelBookingTab: Hotels
+Hotel Booking Tab Text Stored Successfully Hotels
+ Click → hotelBooking
+[90m[2025-11-25T16:23:09.510Z] [DEBUG] Click → hotelBooking[0m
+ Wait For Visible → enterCityName (Timeout: 60000ms)
+[90m[2025-11-25T16:23:11.575Z] [DEBUG] Wait: visible → class,\'selectHtlCity\')]') | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:14.228Z] [DEBUG] Visible in 2652ms → class,\'selectHtlCity\')]')[0m
+ Click → enterCityName
+[90m[2025-11-25T16:23:14.229Z] [DEBUG] Click → enterCityName[0m
+ Type → enteringCityName | Value: Goa | Delay: 0ms
+[90m[2025-11-25T16:23:16.460Z] [DEBUG] Type → enteringCityName | value="Goa"[0m
+Entered City Name:  North Goa
+ Click → check_In
+[90m[2025-11-25T16:23:18.637Z] [DEBUG] Click → check_In[0m
+ Click → check_out
+[90m[2025-11-25T16:23:19.909Z] [DEBUG] Click → check_out[0m
+[RUNTIME] STORED → RawCheckIn: 27Nov'2025
+[RUNTIME] STORED → RawCheckOut: 28Nov'2025
+[RUNTIME] STORED → CleanCheckIn: 27/11/2025
+[RUNTIME] STORED → CleanCheckOut: 28/11/2025
+Converted Check-In: 27/11/2025
+Converted Check-Out: 28/11/2025
+ Wait For Visible → room_guests (Timeout: 60000ms)
+[90m[2025-11-25T16:23:23.933Z] [DEBUG] Wait: visible → <element> | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:24.125Z] [DEBUG] Visible in 191ms → <element>[0m
+ Wait For Visible → adult_count (Timeout: 60000ms)
+[90m[2025-11-25T16:23:24.271Z] [DEBUG] Wait: visible → id="Adults_room_1_1"]') | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:24.401Z] [DEBUG] Visible in 129ms → id="Adults_room_1_1"]')[0m
+ Wait For Visible → child_count (Timeout: 60000ms)
+[90m[2025-11-25T16:23:24.404Z] [DEBUG] Wait: visible → Children_room_1_1 | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:24.573Z] [DEBUG] Visible in 167ms → Children_room_1_1[0m
+Adult Count in Room 1:  [33m2[39m
+Child Count in Room 1:  [33m0[39m
+ Click → child_plus
+[90m[2025-11-25T16:23:24.824Z] [DEBUG] Click → child_plus[0m
+ Wait For Visible → ages (Timeout: 60000ms)
+[90m[2025-11-25T16:23:25.566Z] [DEBUG] Wait: visible → Child_Age_1_1 | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:25.735Z] [DEBUG] Visible in 169ms → Child_Age_1_1[0m
+Between 2 and 12 → 7
+ Select Option → ages | Value: "7"
+ Click → addRoom
+[90m[2025-11-25T16:23:25.931Z] [DEBUG] Click → addRoom[0m
+ Wait For Visible → Room_2 (Timeout: 60000ms)
+[90m[2025-11-25T16:23:26.645Z] [DEBUG] Wait: visible → <element> | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:26.808Z] [DEBUG] Visible in 163ms → <element>[0m
+ Click → done
+[90m[2025-11-25T16:23:27.482Z] [DEBUG] Click → done[0m
+Room and Guests Selected:  2 Room, 6 Guests
+ Wait For Visible → searchHotels (Timeout: 60000ms)
+[90m[2025-11-25T16:23:28.830Z] [DEBUG] Wait: visible → id="btnSearch"]') | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:28.929Z] [DEBUG] Visible in 99ms → id="btnSearch"]')[0m
+ Click → searchHotels
+[90m[2025-11-25T16:23:28.930Z] [DEBUG] Click → searchHotels[0m
+ Wait For Visible → afterenteredCityName (Timeout: 60000ms)
+[90m[2025-11-25T16:23:30.259Z] [DEBUG] Wait: visible → City name, Location or Specific hotel | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:32.029Z] [DEBUG] Visible in 1770ms → City name, Location or Specific hotel[0m
+Expected City Name:  North Goa
+Actual City Name from page:  North Goa, India
+ City name verification passed
+ Wait For Visible → AfterenteredRoomsGuests (Timeout: 60000ms)
+[90m[2025-11-25T16:23:33.771Z] [DEBUG] Wait: visible → guests_selected guests-selected | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:33.904Z] [DEBUG] Visible in 133ms → guests_selected guests-selected[0m
+Expected Rooms/Guests:  2 Room, 6 Guests
+Actual Rooms/Guests:  2 Room, 6 Guests
+ Rooms and guests verification passed
+[RUNTIME] STORED → Check_In_Date: 27/11/2025
+[RUNTIME] STORED → Check_Out_Date: 28/11/2025
+ Check-In and Check-Out date verification passed
+ Wait For Visible → Popularity (Timeout: 60000ms)
+[90m[2025-11-25T16:23:34.559Z] [DEBUG] Wait: visible → Popularity | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:34.725Z] [DEBUG] Visible in 166ms → Popularity[0m
+ Click → Popularity
+[90m[2025-11-25T16:23:34.727Z] [DEBUG] Click → Popularity[0m
+ Wait For Visible → Price (Timeout: 60000ms)
+[90m[2025-11-25T16:23:35.333Z] [DEBUG] Wait: visible → High to Low | timeout: 60000ms[0m
+[90m[2025-11-25T16:23:35.426Z] [DEBUG] Visible in 93ms → High to Low[0m
+ Click → Price
+[90m[2025-11-25T16:23:35.428Z] [DEBUG] Click → Price[0m
+Total Hotels Found:  [33m7[39m
+Hotels sorted by Price (High to Low): [
+  {
+    name: [32m'Doubletree By Hilton Goa-Panaji'[39m,
+    price: [33m18000[39m,
+    reviews: [32m''[39m
+  },
+  { name: [32m'The Fern Kadamba Hotel And Spa'[39m, price: [33m17599[39m, reviews: [32m''[39m },
+  { name: [32m'Mercure Goa Devaaya Resort'[39m, price: [33m11550[39m, reviews: [32m''[39m },
+  { name: [32m'Comfort Inn Elite Goa'[39m, price: [33m10000[39m, reviews: [32m''[39m },
+  { name: [32m'Hotel Menino Executive'[39m, price: [33m9678[39m, reviews: [32m''[39m },
+  { name: [32m'Visao'[39m, price: [33m8952[39m, reviews: [32m''[39m },
+  { name: [32m'Hotel Swarnam'[39m, price: [33m8408[39m, reviews: [32m''[39m }
+]
+📁 Excel saved → C:\enterprise-playwright-tests\test-results\excel\Excel_EasyMyTrip_Hotel_Booking_Test_2025-11-25T16-23-41-029Z.xlsx
 ]]>
 </system-out>
 </testcase>
